@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Function to count occurrences of "Linux" in a file
+count_linux_in_file() {
+    local file="$1"
+    local count=$(grep -o -i 'Linux' "$file" | wc -l)
+    echo "$count"
+}
+
+# Initialize total count
+total_count=0
+
+# Loop through all .txt files recursively
+for file in $(find . -type f -name "*.txt"); do
+    # Count occurrences of "Linux" in the file
+    count=$(count_linux_in_file "$file")
+    # Increment the total count
+    ((total_count += count))
+    echo "Found $count occurrences of 'Linux' in: $file"
+done
+
+# Print total count
+echo "Total occurrences of 'Linux' in all .txt files: $total_count"
+
+
+
+          
